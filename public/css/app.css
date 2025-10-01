@@ -6,7 +6,7 @@
     --light-gold: #F5E8C8;
     --white: #FFFFFF;
     --gray: #333333;
-    --light-gray: #555555;
+    --light-gray: #d1d1d1;
 }
 
 /* Base Styles */
@@ -23,13 +23,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background-image: url(../images/anastasiia-rozumna-PgP9L5CWI38-unsplash.jpg);
-    background-position: center;
     background-attachment: fixed;
 }
 
 .app-container {
     min-height: 100vh;
     position: relative;
+    background-color: rgba(0,0,0,.8);
 }
 
 /* Typography */
