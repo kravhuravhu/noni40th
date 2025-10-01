@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="app-container">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+        </button>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-content">
@@ -16,7 +24,7 @@
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <button class="nav-btn active" data-section="program">Program</button>
-            <button class="nav-btn" data-section="photos">Upload Photos</button>
+            <button class="nav-btn" data-section="menu">Menu</button>
         </div>
     </nav>
 
@@ -25,36 +33,57 @@
         <!-- Program Section -->
         <section id="program" class="content-section active">
             <div class="timeline-container">
-                <h2 class="section-title">Noni's 40th Birthday Celebration</h2>
+                <h2 class="section-title">The Program</h2>
                 <div class="timeline">
                     <!-- Timeline items will be dynamically generated -->
                 </div>
             </div>
         </section>
 
-        <!-- Photos Section -->
-        <section id="photos" class="content-section">
-            <div class="photos-container">
-                <h2 class="section-title">Photo Gallery</h2>
-                <div class="upload-section">
-                    <div class="upload-card">
-                        <div class="upload-icon">
-                            <svg viewBox="0 0 24 24" width="48" height="48">
-                                <path fill="currentColor" d="M14,13V17H10V13H7L12,8L17,13M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z" />
-                            </svg>
-                        </div>
-                        <h3>Got pictures to upload?</h3>
-                        <p>Share your favorite moments from the celebration!</p>
-                        <form id="uploadForm" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" id="fileInput" name="photos[]" multiple accept="image/*" style="display: none;">
-                            <button type="button" class="upload-btn" id="uploadTrigger">Select Photos</button>
-                            <button type="submit" class="submit-btn" id="submitBtn" style="display: none;">Upload Photos</button>
-                        </form>
+        <!-- Menu Section -->
+        <section id="menu" class="content-section">
+            <div class="menu-container">
+                <h2 class="section-title">Menu</h2>
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Starter</h3>
+                    <div class="menu-item">
+                        <p class="menu-item-description">Smoked Trout Rose's, Creamy Avocado Mousse, Baby Leaf, Cucumber & Cherry Tomato Salad Dressed with Balsamic Reduction</p>
                     </div>
                 </div>
-                <div class="gallery" id="gallery">
-                    <!-- Uploaded images will appear here -->
+
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Sorbet</h3>
+                    <div class="menu-item">
+                        <p class="menu-item-description">Refreshing Passionfruit Sorbet to Cleanse the Palate</p>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Main</h3>
+                    <div class="menu-item">
+                        <h4 class="menu-item-title">Sumptuous Buffet Feast</h4>
+                        <ul class="menu-item-list">
+                            <li>Medium Rare Beef Fillet Crusted with Crushed Peppercorns</li>
+                            <li>Spicy Peri Peri Marinated Chicken Leg & Thigh Pieces</li>
+                            <li>Traditional & Aromatic Savoury Rice</li>
+                            <li>Creamy Potato Dauphinoise, Layered to Perfection</li>
+                            <li>Garlic Butter Glazed Broccoli and Crisp Green Beans</li>
+                            <li>Fresh Traditional Greek Salad & Dressing</li>
+                            <li>Colourful & Tangy Beetroot Puree</li>
+                            <li>Rich Red Wine Jus & a Hearty Brown Gravy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Dessert Table</h3>
+                    <div class="menu-item">
+                        <ul class="menu-item-list">
+                            <li>Creamy Baked New York Cheesecake & a Trio of Dipping Sauces</li>
+                            <li>Vanilla Bean Crème Brûlée, Caramelized Sugar & Finish with a Sweet Berry Mint Salsa</li>
+                            <li>Floral Scented Rose Panna Cotta & Crunchy Vanilla Crumb</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
