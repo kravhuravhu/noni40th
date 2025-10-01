@@ -7,7 +7,7 @@ const timelineData = [
     },
     {
         time: "3:30 – 5:30 PM",
-        title: "Canapes",
+        title: "Canapés",
         details: ["Saxophonist live set during canapés and mingling."]
     },
     {
@@ -22,7 +22,7 @@ const timelineData = [
     {
         time: "6:00 – 6:20 PM",
         title: "Welcome Remarks & Prayer",
-        details: ["Led by Lebo (Emcee)."]
+        details: ["Led by Lebo (MC)."]
     },
     {
         time: "6:20 – 6:30 PM",
@@ -73,7 +73,7 @@ const timelineData = [
         ]
     },
     {
-        time: "8:55",
+        time: "8:55 - 9:00 PM",
         title: "Dessert Served",
         details: ["Singer"]
     },
@@ -94,12 +94,8 @@ const mobileMenu = document.getElementById('mobileMenu');
 const navButtons = document.querySelectorAll('.nav-btn');
 const contentSections = document.querySelectorAll('.content-section');
 const timeline = document.querySelector('.timeline');
-const uploadTrigger = document.getElementById('uploadTrigger');
-const fileInput = document.getElementById('fileInput');
-const uploadForm = document.getElementById('uploadForm');
-const submitBtn = document.getElementById('submitBtn');
-const gallery = document.getElementById('gallery');
 const toast = document.getElementById('toast');
+const themeToggle = document.getElementById('themeToggle');
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
@@ -108,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up event listeners
     setupEventListeners();
+    
+    // Initialize theme
+    initTheme();
 });
 
 // Populate timeline with data
@@ -152,6 +151,22 @@ function populateTimeline() {
     });
 }
 
+// Theme functionality
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        showToast(`Switched to ${newTheme} theme`, 'info');
+    });
+}
+
 // Set up event listeners
 function setupEventListeners() {
     // Hamburger menu toggle
@@ -176,64 +191,6 @@ function setupEventListeners() {
             hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
         });
-    });
-    
-    // Upload trigger
-    uploadTrigger.addEventListener('click', function() {
-        fileInput.click();
-    });
-    
-    // File input change
-    fileInput.addEventListener('change', function() {
-        if (this.files.length > 0) {
-            submitBtn.style.display = 'inline-block';
-            showToast(`Selected ${this.files.length} file(s)`);
-        } else {
-            submitBtn.style.display = 'none';
-        }
-    });
-    
-    // Form submission
-    uploadForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (fileInput.files.length === 0) {
-            showToast('Please select at least one photo', 'error');
-            return;
-        }
-        
-        // In a real implementation, you would send the files to the server here
-        // For this demo, we'll simulate the upload process
-        
-        showToast('Uploading photos...', 'info');
-        
-        // Simulate upload delay
-        setTimeout(() => {
-            // Display uploaded images
-            Array.from(fileInput.files).forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const galleryItem = document.createElement('div');
-                        galleryItem.className = 'gallery-item';
-                        
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.alt = 'Uploaded photo';
-                        
-                        galleryItem.appendChild(img);
-                        gallery.appendChild(galleryItem);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            
-            showToast('Photos uploaded successfully!', 'success');
-            
-            // Reset form
-            uploadForm.reset();
-            submitBtn.style.display = 'none';
-        }, 2000);
     });
 }
 
